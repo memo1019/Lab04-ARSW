@@ -65,10 +65,15 @@ public class InMemoryPersistenceTest {
         catch (BlueprintPersistenceException ex){
             
         }
-                
-        
+
+
+    }
+    @Test
+    public void getBluePrintText() {
+
     }
 
 
-    
-}
+
+
+    }
