@@ -5,6 +5,8 @@
 ### Dependencias
 * [Ejercicio introductorio al manejo de Spring y la configuración basada en anotaciones](https://github.com/ARSW-ECI-beta/DIP_DI-SPRING_JAVA-GRAMMAR_CHECKER).
 
+> Se realizo en el siguiente github [Ejercicio introductorio a Spring](https://github.com/memo1019/Lab04-ARSW_Ejercicio_Introductorio).
+
 ### Descripción
 En este ejercicio se va a construír un modelo de clases para la capa lógica de una aplicación que permita gestionar planos arquitectónicos de una prestigiosa compañia de diseño. 
 
