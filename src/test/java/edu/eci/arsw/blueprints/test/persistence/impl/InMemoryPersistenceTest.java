@@ -10,6 +10,9 @@ import edu.eci.arsw.blueprints.model.Point;
 import edu.eci.arsw.blueprints.persistence.BlueprintNotFoundException;
 import edu.eci.arsw.blueprints.persistence.BlueprintPersistenceException;
 import edu.eci.arsw.blueprints.persistence.impl.InMemoryBlueprintPersistence;
+
+import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.junit.Test;
@@ -73,7 +76,39 @@ public class InMemoryPersistenceTest {
 
     }
 
+    @Test
+    public void getBlueprintsByAuthorTest(){
+        InMemoryBlueprintPersistence persistencia=new InMemoryBlueprintPersistence();
+
+        Point[] punto1=new Point[]{new Point(0, 0),new Point(1, 1)};
+        Blueprint bp1=new Blueprint("memo", "casitaMemo",punto1);
+        Point[] punto2=new Point[]{new Point(3, 3),new Point(5, 5)};
+        Blueprint bp2=new Blueprint("Fede", "elRancho",punto2);
+        Point[] punto3=new Point[]{new Point(7, 7),new Point(10, 10)};
+        Blueprint bp3=new Blueprint("Fede", "Castro",punto3);
+        Point[] punto4=new Point[]{new Point(12, 12),new Point(16, 16)};
+        Blueprint bp4=new Blueprint("Fabian", "ciego",punto4);
+        Set<Blueprint> ans= null;
+        try {
+            persistencia.saveBlueprint(bp1);
+            persistencia.saveBlueprint(bp2);
+            persistencia.saveBlueprint(bp3);
+            persistencia.saveBlueprint(bp4);
+        } catch (BlueprintPersistenceException e) {
+            e.printStackTrace();
+        }
+        Set<Blueprint> aux = new HashSet<>();
+        aux.add(bp1);
+
+        try {
+            ans = persistencia.getBlueprintsByAuthor("memo");
+        } catch (BlueprintNotFoundException e) {
+            e.printStackTrace();
+        }
+        assertEquals(aux,ans);
+
 
 
 
     }
+}

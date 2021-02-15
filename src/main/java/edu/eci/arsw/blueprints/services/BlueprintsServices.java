@@ -21,7 +21,7 @@ import org.springframework.stereotype.Service;
  *
  * @author hcadavid
  */
-@Service
+@Service("BlueprintsServices")
 public class BlueprintsServices {
    
     @Autowired
@@ -54,7 +54,9 @@ public class BlueprintsServices {
      * @throws BlueprintNotFoundException if the given author doesn't exist
      */
     public Set<Blueprint> getBlueprintsByAuthor(String author) throws BlueprintNotFoundException{
-        return bpp.getBlueprintByAuthor(author);
+        return bpp.getBlueprintsByAuthor(author);
     }
+
+
     
 }
