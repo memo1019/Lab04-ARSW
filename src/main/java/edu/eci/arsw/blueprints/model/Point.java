@@ -37,7 +37,16 @@ public class Point {
     public void setY(int y) {
         this.y = y;
     }
-    
-    
-    
+
+    public boolean compare(Point pp){
+        if(this.x == pp.getX() && this.y == pp.getY()){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Punto{" + "x=" + x + ", y=" + y + '}';
+    }
 }

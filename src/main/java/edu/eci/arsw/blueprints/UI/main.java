@@ -17,7 +17,7 @@ public class main {
         System.out.println("------------------Registrar planos------------------");
 
         BlueprintsServices cs = ac.getBean(BlueprintsServices.class);
-        Point[] punto1=new Point[]{new Point(0, 0),new Point(1, 1)};
+        Point[] punto1=new Point[]{new Point(0, 0),new Point(0, 0)};
         Point[] punto2=new Point[]{new Point(7, 7),new Point(10, 10)};
         Point[] punto3=new Point[]{new Point(14, 17),new Point(11, 12)};
         cs.addNewBlueprint(new Blueprint("memo", "casitaMemo",punto1));
@@ -42,6 +42,11 @@ public class main {
         System.out.println("------------------Consultar Un Plano espefecifico por autor------------------");
         System.out.println();
         System.out.println(cs.getBlueprintsByAuthor("Fede").toString());
+        System.out.println();
+        System.out.println("------------------Filtro de Redundancia------------------");
+        for (Blueprint x:cs.getFilteredBlueprints("memo")){
+            System.out.println(x.getPoints().toString());
+        }
 
     }
 
