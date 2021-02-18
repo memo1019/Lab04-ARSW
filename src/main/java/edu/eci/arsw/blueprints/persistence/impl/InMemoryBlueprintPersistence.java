@@ -53,7 +53,6 @@ public class InMemoryBlueprintPersistence implements BlueprintsPersistence{
                 Author.add(blueprints.get(tupla));
             }
         }
-
         return Author;
     }
     @Override

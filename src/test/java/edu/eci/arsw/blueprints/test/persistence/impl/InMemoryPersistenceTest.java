@@ -17,7 +17,12 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import edu.eci.arsw.blueprints.services.BlueprintsServices;
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import static org.junit.Assert.*;
 
 /**
@@ -110,5 +115,19 @@ public class InMemoryPersistenceTest {
             e.printStackTrace();
         }
         assertEquals(aux,ans);
+    }
+
+    @Test
+    public void filtroAplicado() throws BlueprintPersistenceException, BlueprintNotFoundException {
+        ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
+        //Creación de la instancia de la clase de servicios.
+        BlueprintsServices bps = ac.getBean(BlueprintsServices.class);
+        ArrayList<Point> punto = new ArrayList<>(Arrays.asList(new Point(0, 0),new Point(0, 0),new Point(1, 1),new Point(1, 1)));
+        ArrayList<Point> esperado = new ArrayList<>(Arrays.asList(new Point(0, 0),new Point(1, 1)));
+        bps.addNewBlueprint(new Blueprint("memo", "casitaMemo",punto));
+        boolean compare1 = bps.getFilteredBlueprints(bps.getBlueprint("memo","casitaMemo")).getPoints().get(0).compare(esperado.get(0));
+        boolean compare2 = bps.getFilteredBlueprints(bps.getBlueprint("memo","casitaMemo")).getPoints().get(1).compare(esperado.get(1));
+        boolean comparacion = compare1 && compare2;
+        assertEquals(comparacion,true);
     }
 }

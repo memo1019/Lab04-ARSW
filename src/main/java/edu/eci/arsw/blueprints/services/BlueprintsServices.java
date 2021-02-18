@@ -30,7 +30,7 @@ public class BlueprintsServices {
     BlueprintsPersistence bpp=null;
 
     @Autowired
-    @Qualifier("SubmuestreoFiltro")
+    @Qualifier("RedundanciaFiltro")
     BluePrintFilter filter;
     
     public void addNewBlueprint(Blueprint bp) throws BlueprintPersistenceException {
