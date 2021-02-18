@@ -120,6 +120,10 @@ En este ejercicio se va a construír un modelo de clases para la capa lógica de
 	> }
 	> ```
 	
+	Al probar el filtro de redundancia el resultado es el siguiente:
+	
+	> ![](img/ejecucionPunto4redundancia.png)
+	
 	* (B) Filtrado de submuestreo: suprime 1 de cada 2 puntos del plano, de manera intercalada.
 	
 	> ```java
@@ -135,5 +139,9 @@ En este ejercicio se va a construír un modelo de clases para la capa lógica de
 	> 	return new Blueprint(bluePrint.getAuthor(), bluePrint.getName(), blueprintPoints);
 	> }
 	> ```
+	
+	Al probar el filtro de sub-muestreo el resultado es el siguiente:
+	
+	> ![](img/ejecucionPunto4submuestreo.png)
 
 5. Agrege las pruebas correspondientes a cada uno de estos filtros, y pruebe su funcionamiento en el programa de prueba, comprobando que sólo cambiando la posición de las anotaciones -sin cambiar nada más-, el programa retorne los planos filtrados de la manera (A) o de la manera (B). 
