@@ -145,3 +145,24 @@ En este ejercicio se va a construír un modelo de clases para la capa lógica de
 	> ![](img/ejecucionPunto4submuestreo.png)
 
 5. Agrege las pruebas correspondientes a cada uno de estos filtros, y pruebe su funcionamiento en el programa de prueba, comprobando que sólo cambiando la posición de las anotaciones -sin cambiar nada más-, el programa retorne los planos filtrados de la manera (A) o de la manera (B). 
+
+	Solo cambiando una etiqueta en la clase BlueprintsServices se cambia el filtro que se utiliza para el plano:
+	
+	Con la etiqueta de la siguiente manera se utiliza el filtro de redundancia
+
+	> ```java
+	> @Autowired
+	> @Qualifier("RedundanciaFiltro")
+	> BluePrintFilter filter;
+	> ```
+	> 
+
+	Mientras que con la etiqueda de la siguiente manera se utiliza el filtro de sub-muestreo
+	
+	> ```java
+	> @Autowired
+	> @Qualifier("SubmuestreoFiltro")
+	> BluePrintFilter filter;
+	> ```
+	> 
+	
