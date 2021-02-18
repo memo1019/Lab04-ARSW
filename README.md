@@ -166,3 +166,13 @@ En este ejercicio se va a construír un modelo de clases para la capa lógica de
 	> ```
 	> 
 	
+	Después de realizar las puerbas para cada filtro utilizando los test de maven podemos ver que todos pasaron:
+	
+	> ![](img/pruebasPunto5.png)
+
+
+### Autores
+
+> Federico Barrios Meneses
+> Guillermo Alfonso Castro Camelo
+	
