@@ -20,27 +20,20 @@ public class filtroRedundancia implements BluePrintFilter{
     @Override
     public Blueprint filter(Blueprint blueprint) {
         System.out.println("Filtro de redundancia aplicado: ");
-        ArrayList<Point> points = blueprint.getPoints();
-        ArrayList<Point> repeatedPoints = new ArrayList<>();
-        Point lastPoint = points.get(0);
-        for (int i = 1; i < points.size(); i++) {
-            Point p = points.get(i);
+        ArrayList<Point> puntos = blueprint.getPoints();
+        ArrayList<Point> puntosRepetidos = new ArrayList<>();
+        Point lastPoint = puntos.get(0);
+        for (int i = 1; i < puntos.size(); i++) {
+            Point p = puntos.get(i);
             if (lastPoint.compare(p)) {
-                repeatedPoints.add(p);
+                puntosRepetidos.add(p);
             } else {
                 lastPoint = p;
             }
         }
-        for (Point p : repeatedPoints) {
-            points.remove(p);
+        for (Point p : puntosRepetidos) {
+            puntos.remove(p);
         }
-        return new Blueprint(blueprint.getAuthor(), blueprint.getName(), points);
-    }
-
-    public Set<Blueprint> multiFilter(Set<Blueprint> blueprints) {
-        for (Blueprint blueprint : blueprints) {
-            filter(blueprint);
-        }
-        return blueprints;
+        return new Blueprint(blueprint.getAuthor(), blueprint.getName(), puntos);
     }
 }
