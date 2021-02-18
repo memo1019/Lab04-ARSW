@@ -22,6 +22,10 @@ En este ejercicio se va a construír un modelo de clases para la capa lógica de
 	* Agregar las dependencias de Spring.
 	* Agregar la configuración de Spring.
 	* Configurar la aplicación -mediante anotaciones- para que el esquema de persistencia sea inyectado al momento de ser creado el bean 'BlueprintServices'.
+	> ```java
+	> @Service("SubmuestreoFiltro")
+		public class filtroSubmuestreo implements BluePrintFilter{
+	> ```
 
 
 2. Complete los operaciones getBluePrint() y getBlueprintsByAuthor(). Implemente todo lo requerido de las capas inferiores (por ahora, el esquema de persistencia disponible 'InMemoryBlueprintPersistence') agregando las pruebas correspondientes en 'InMemoryPersistenceTest'.
