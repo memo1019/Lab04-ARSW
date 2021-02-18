@@ -30,7 +30,7 @@ public class BlueprintsServices {
     BlueprintsPersistence bpp=null;
 
     @Autowired
-    @Qualifier("RedundanciaFiltro")
+    @Qualifier("SubmuestreoFiltro")
     BluePrintFilter filter;
     
     public void addNewBlueprint(Blueprint bp) throws BlueprintPersistenceException {
@@ -62,7 +62,13 @@ public class BlueprintsServices {
         return bpp.getBlueprintsByAuthor(author);
     }
 
-    public Set<Blueprint> getFilteredBlueprints(String author) throws BlueprintPersistenceException, BlueprintNotFoundException {
-            return filter.filter(getBlueprintsByAuthor(author));
+    /**
+     * Aplica el filtro que esté definido al blueprint que se envía.
+     * @param bluePrint Plano al que se quiere aplicar el filtro.
+     * @return Un nuevo blueprint con el filtro aplicado.
+     * @throws BlueprintPersistenceException
+     */
+    public Blueprint getFilteredBlueprints(Blueprint bluePrint) throws BlueprintPersistenceException {
+            return filter.filter(bluePrint);
     }
 }

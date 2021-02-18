@@ -4,9 +4,13 @@ import edu.eci.arsw.blueprints.model.Blueprint;
 import edu.eci.arsw.blueprints.persistence.BlueprintPersistenceException;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
-
 @Service
 public interface BluePrintFilter {
-    public Set<Blueprint> filter(Set<Blueprint> bluePrints) throws BlueprintPersistenceException;
+    /**
+     * Aplica el filtro que esté definido al blueprint que se envía.
+     * @param bluePrint Plano al que se quiere aplicar el filtro.
+     * @return Un nuevo blueprint con el filtro aplicado.
+     * @throws BlueprintPersistenceException
+     */
+    Blueprint filter(Blueprint bluePrint) throws BlueprintPersistenceException;
 }

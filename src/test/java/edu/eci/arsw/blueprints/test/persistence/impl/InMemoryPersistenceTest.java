@@ -11,6 +11,8 @@ import edu.eci.arsw.blueprints.persistence.BlueprintNotFoundException;
 import edu.eci.arsw.blueprints.persistence.BlueprintPersistenceException;
 import edu.eci.arsw.blueprints.persistence.impl.InMemoryBlueprintPersistence;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.logging.Level;
@@ -28,12 +30,12 @@ public class InMemoryPersistenceTest {
     public void saveNewAndLoadTest() throws BlueprintPersistenceException, BlueprintNotFoundException{
         InMemoryBlueprintPersistence ibpp=new InMemoryBlueprintPersistence();
 
-        Point[] pts0=new Point[]{new Point(40, 40),new Point(15, 15)};
+        ArrayList<Point> pts0 = new ArrayList<>(Arrays.asList(new Point(40, 40),new Point(15, 15)));
         Blueprint bp0=new Blueprint("mack", "mypaint",pts0);
         
         ibpp.saveBlueprint(bp0);
-        
-        Point[] pts=new Point[]{new Point(0, 0),new Point(10, 10)};
+
+        ArrayList<Point> pts = new ArrayList<>(Arrays.asList(new Point(0, 0),new Point(10, 10)));
         Blueprint bp=new Blueprint("john", "thepaint",pts);
         
         ibpp.saveBlueprint(bp);
@@ -48,8 +50,8 @@ public class InMemoryPersistenceTest {
     @Test
     public void saveExistingBpTest() {
         InMemoryBlueprintPersistence ibpp=new InMemoryBlueprintPersistence();
-        
-        Point[] pts=new Point[]{new Point(0, 0),new Point(10, 10)};
+
+        ArrayList<Point> pts = new ArrayList<>(Arrays.asList(new Point(0, 0),new Point(10, 10)));
         Blueprint bp=new Blueprint("john", "thepaint",pts);
         
         try {
@@ -57,8 +59,8 @@ public class InMemoryPersistenceTest {
         } catch (BlueprintPersistenceException ex) {
             fail("Blueprint persistence failed inserting the first blueprint.");
         }
-        
-        Point[] pts2=new Point[]{new Point(10, 10),new Point(20, 20)};
+
+        ArrayList<Point> pts2 = new ArrayList<>(Arrays.asList(new Point(10, 10),new Point(20, 20)));
         Blueprint bp2=new Blueprint("john", "thepaint",pts2);
 
         try{
@@ -80,13 +82,16 @@ public class InMemoryPersistenceTest {
     public void getBlueprintsByAuthorTest(){
         InMemoryBlueprintPersistence persistencia=new InMemoryBlueprintPersistence();
 
-        Point[] punto1=new Point[]{new Point(0, 0),new Point(1, 1)};
+        ArrayList<Point> punto1 = new ArrayList<>(Arrays.asList(new Point(0, 0),new Point(1, 1)));
         Blueprint bp1=new Blueprint("memo", "casitaMemo",punto1);
-        Point[] punto2=new Point[]{new Point(3, 3),new Point(5, 5)};
+
+        ArrayList<Point> punto2 = new ArrayList<>(Arrays.asList(new Point(3, 3),new Point(5, 5)));
         Blueprint bp2=new Blueprint("Fede", "elRancho",punto2);
-        Point[] punto3=new Point[]{new Point(7, 7),new Point(10, 10)};
+
+        ArrayList<Point> punto3 = new ArrayList<>(Arrays.asList(new Point(7, 7),new Point(10, 10)));
         Blueprint bp3=new Blueprint("Fede", "Castro",punto3);
-        Point[] punto4=new Point[]{new Point(12, 12),new Point(16, 16)};
+
+        ArrayList<Point> punto4 = new ArrayList<>(Arrays.asList(new Point(12, 12),new Point(16, 16)));
         Blueprint bp4=new Blueprint("Fabian", "ciego",punto4);
         Set<Blueprint> ans= null;
         try {
@@ -99,16 +104,11 @@ public class InMemoryPersistenceTest {
         }
         Set<Blueprint> aux = new HashSet<>();
         aux.add(bp1);
-
         try {
             ans = persistencia.getBlueprintsByAuthor("memo");
         } catch (BlueprintNotFoundException e) {
             e.printStackTrace();
         }
         assertEquals(aux,ans);
-
-
-
-
     }
 }

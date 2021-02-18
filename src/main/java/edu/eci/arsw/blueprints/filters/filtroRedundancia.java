@@ -6,39 +6,41 @@ import edu.eci.arsw.blueprints.persistence.BlueprintPersistenceException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
 @Service("RedundanciaFiltro")
 public class filtroRedundancia implements BluePrintFilter{
-
-    public Blueprint filterBlueprint(Blueprint blueprint) {
-        List<Point> listPoint = blueprint.getPoints();
-        List<Point> update = new ArrayList<Point>();
-        update.add(listPoint.get(0));
-        for (int i = 1; i < listPoint.size(); i++) {
-            Point point = listPoint.get(i - 1);
-            if (!(point.getX() == listPoint.get(i).getX() && point.getY() == listPoint.get(i).getY())) {
-                update.add(listPoint.get(i));
+    /**
+     * Elimina los puntos repetidos de un plano.
+     * @param blueprint El plano que se revisará.
+     * @return Un nuevo plano con el filtro aplicado.
+     */
+    @Override
+    public Blueprint filter(Blueprint blueprint) {
+        System.out.println("Filtro de redundancia aplicado: ");
+        ArrayList<Point> points = blueprint.getPoints();
+        ArrayList<Point> repeatedPoints = new ArrayList<>();
+        Point lastPoint = points.get(0);
+        for (int i = 1; i < points.size(); i++) {
+            Point p = points.get(i);
+            if (lastPoint.compare(p)) {
+                repeatedPoints.add(p);
+            } else {
+                lastPoint = p;
             }
         }
-
-        blueprint.updatePoint(update);
-        return blueprint;
+        for (Point p : repeatedPoints) {
+            points.remove(p);
+        }
+        return new Blueprint(blueprint.getAuthor(), blueprint.getName(), points);
     }
 
     public Set<Blueprint> multiFilter(Set<Blueprint> blueprints) {
         for (Blueprint blueprint : blueprints) {
-            filterBlueprint(blueprint);
+            filter(blueprint);
         }
         return blueprints;
-    }
-
-    @Override
-    public Set<Blueprint> filter(Set<Blueprint> bluePrints) throws BlueprintPersistenceException {
-        for (Blueprint blueprint : bluePrints) {
-            filterBlueprint(blueprint);
-        }
-        return bluePrints;
     }
 }

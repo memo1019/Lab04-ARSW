@@ -12,24 +12,20 @@ import java.util.Set;
 @Service("SubmuestreoFiltro")
 public class filtroSubmuestreo implements BluePrintFilter{
 
+    /**
+     * Elimina uno de cada dos puntos de manera intercalada.
+     * @param bluePrint Plano al que se quiere aplicar el filtro.
+     * @return Un nuevo plano con el filtro aplicado.
+     */
     @Override
-    public Set<Blueprint> filter(Set<Blueprint> bluePrints) throws BlueprintPersistenceException {
-        for (Blueprint bl : bluePrints) {
-            filterBlueprint(bl);
-        }
-        return bluePrints;
-    }
-    public Blueprint filterBlueprint(Blueprint blueprint) {
-        List<Point> blueprintPoints = blueprint.getPoints();
+    public Blueprint filter(Blueprint bluePrint) {
+        System.out.println("Filtro de sub-muestreo aplicado: ");
+        ArrayList<Point> blueprintPoints = bluePrint.getPoints();
         for (int i = blueprintPoints.size() - 1; i >= 0; i--) {
             if (i % 2 == 0) {
                 blueprintPoints.remove(i);
             }
         }
-        Point[] points = (Point[]) blueprintPoints.toArray();
-        return new Blueprint(blueprint.getAuthor(), blueprint.getName(), points);
-
-
+        return new Blueprint(bluePrint.getAuthor(), bluePrint.getName(), blueprintPoints);
     }
-
 }
