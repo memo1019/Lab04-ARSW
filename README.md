@@ -24,7 +24,7 @@ En este ejercicio se va a construír un modelo de clases para la capa lógica de
 	* Configurar la aplicación -mediante anotaciones- para que el esquema de persistencia sea inyectado al momento de ser creado el bean 'BlueprintServices'.
 	> ```java
 	> @Service("SubmuestreoFiltro")
-		public class filtroSubmuestreo implements BluePrintFilter{
+	> 	public class filtroSubmuestreo implements BluePrintFilter{
 	> ```
 
 
